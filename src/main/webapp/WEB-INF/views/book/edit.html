@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Edit Book</h1>
+    <p>
+        <a href="/list-book">List Book</a>
+    </p>
+    <th:block th:if="${message}">
+        <p th:text="${message}"></p>
+    </th:block>
+    <form th:action="@{/edit-book}" th:object="${bookForm}" method="post" enctype="multipart/form-data">
+<!--        <input th:type="hide" name="id" th:field="*{id}">-->
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" th:field="*{name}"/></td>
+            </tr>
+            <tr>
+                <td>Image</td>
+                <td><img th:src="@{'/i/' + ${book.image}}"></td>
+                <td><input type="file" th:field="*{image}" multiple></td>
+            </tr>
+            <tr>
+                <td>Release Year:</td>
+                <td><input type="text" th:field="*{releaseYear}"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Update Book"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
