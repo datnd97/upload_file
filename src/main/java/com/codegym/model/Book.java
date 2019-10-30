@@ -1,5 +1,6 @@
 package com.codegym.model;
 
+import com.codegym.model.sub.PublishingHouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 
@@ -15,6 +16,18 @@ public class Book {
     private int releaseYear;
     private String image;
     private int publishingYear;
+
+    @ManyToOne
+    @JoinColumn(name ="publishinghouse_id")
+    private PublishingHouse publishingHouse;
+
+    public PublishingHouse getPublishingHouse() {
+        return publishingHouse;
+    }
+
+    public void setPublishingHouse(PublishingHouse publishingHouse) {
+        this.publishingHouse = publishingHouse;
+    }
 
     public int getPublishingYear() {
         return publishingYear;
@@ -73,7 +86,9 @@ public class Book {
         this.image = image;
         this.publishingYear = publishingYear;
     }
-//
+
+
+    //
 //    @Override
 //    public String toString() {
 //        return String.format("Book[id=%d, name='%s', releaseYear='%d']", id, name, releaseYear);

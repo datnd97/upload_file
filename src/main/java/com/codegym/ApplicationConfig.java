@@ -1,7 +1,10 @@
 package com.codegym;
 
+import com.codegym.model.sub.PublishingHouse;
 import com.codegym.service.BookService;
+import com.codegym.service.PublishingHouseService;
 import com.codegym.service.impl.BookServiceImpl;
+import com.codegym.service.impl.PublishingHouseServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -53,11 +56,18 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
     }
-
+    // Cau hinh service:
     @Bean
     public BookService bookService() {
         return new BookServiceImpl();
     }
+    @Bean
+    public PublishingHouseService publishingHouseService(){
+        return new PublishingHouseServiceImpl();
+    }
+    
+//    @Bean
+//    public PublishingHouseService publishingHouseService() {return new }
     //Upload file
     @Autowired
     Environment env;
@@ -140,7 +150,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/databook?useUnicode=yes&characterEncoding=utf-8");
+            dataSource.setUrl("jdbc:mysql://localhost:3306/databook?useUnicode=yes&characterEncoding=utf-8");
         dataSource.setUsername( "root" );
         dataSource.setPassword( "123456" );
         return dataSource;

@@ -2,7 +2,9 @@ package com.codegym.controller;
 
 import com.codegym.model.Book;
 import com.codegym.model.BookForm;
+import com.codegym.model.sub.PublishingHouse;
 import com.codegym.service.BookService;
+import com.codegym.service.PublishingHouseService;
 import com.codegym.service.impl.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -25,6 +27,12 @@ public class BookController {
     Environment env;
     @Autowired
     private BookService bookService;
+    @Autowired
+    private PublishingHouseService publishingHouseService;
+    @ModelAttribute("publishingHouse")
+    public Iterable<PublishingHouse> publishingHouses() {
+        return publishingHouseService.findAll();
+    }
     @GetMapping("/create-book")
     public ModelAndView showCreatForm() {
         ModelAndView modelAndView = new ModelAndView("/book/create");
